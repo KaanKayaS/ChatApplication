@@ -1,59 +1,30 @@
 # ChatAppClient
+Projem backendi .Net 8.0 ile yapılmış , frontendi Angular kullanılarak yapılmıştır. Backend tarafında SignalR kullanılarak canlı mesajlaşma ve kullanıcıların online olma
+durumu Real Time bir şekilde gözükmektedir. Kullanıcı girişi yaparak farklı clientler üzerinden mesajlaşma imkanı sunan bir uygulama.
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.6.
 
-## Development server
+---------------------------YAPILMASI GEREKENLER--------------------------
+1-appsettings.json içindeki connection string MsSql' e göre yapılmıştır kendi connection stringinizle değiştirip migration oluşturup
+update-database yapmanız gerekmektedir.(Initial Catolog' da dbnin ismidir.)
+2- Program.cs tarafında 
 
-To start a local development server, run:
+builder.Services.AddCors(action =>
+{
+    action.AddDefaultPolicy(policy =>
+    {
+        policy.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+    });
+});
 
-```bash
-ng serve
-```
+bu urli kendi frontend Urlnizle değiştirmeniz gerkmektedir.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+3- Angular projesini ayağa kaldırırken API' nin ayağa kalktığından emin olun
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+------------------------KURULMASI GEREKEN PAKETLER-------------------------------
+1-Microsoft.Entity.FrameworkCore.SqlServer
+2-Microsoft.Entity.FrameworkCore.Tools
+3-TS.FileService
+4-node
+5-npm
+6-Angular projesine SignalR Kurulmalıdır.
